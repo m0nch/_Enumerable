@@ -15,7 +15,7 @@ namespace System.Collections.Generic
                 List<Student> students = new List<Student>
             {
             new Student() { LastName = "Doe", FirstName = "Jhon", Age = 25 },
-            new Student() { LastName = "Doe", FirstName = "Jane", Age = 27 },
+            new Student() { LastName = "Danil", FirstName = "Jane", Age = 27 },
             new Student() { LastName = "Parker", FirstName = "Sara", Age = 21 },
             new Student() { LastName = "Simpson", FirstName = "Jessica", Age = 21 },
             new Student() { LastName = "Washington", FirstName = "Andre", Age = 21 }
@@ -29,6 +29,9 @@ namespace System.Collections.Generic
             new Teacher() { LastName = "Harris", FirstName = "Richard", Age = 54 },
             new Teacher() { LastName = "Clark", FirstName = "Thomas", Age = 48 }
             };
+
+                //Count
+                int count = students._Count();
 
                 //GroupBy
                 var query1 = students._GroupBy(student => student.Age == 21);
@@ -58,10 +61,99 @@ namespace System.Collections.Generic
                     Console.Write($"{name}, ");
                 }
 
-                //IEnumerable
-                //students.Distinct()
-    
-            Console.ReadKey();
+                //Where
+                List<string> fruits = new List<string> 
+                                    { "apple", "passionfruit", "banana", "mango",
+                                    "orange", "blueberry", "grape", "strawberry" };
+                IEnumerable<string> query0 = fruits._Where(fruit => fruit.Length < 6);
+                foreach (string fruit in query0)
+                {
+                    Console.WriteLine(fruit);
+                }
+
+                //Distinct
+                IEnumerable<string> distinctLastNames = query._Distinct();
+                Console.WriteLine("\nDistinct LastNames:");
+                foreach (string lastName in distinctLastNames)
+                {
+                    Console.WriteLine(lastName);
+                }
+
+                //Any
+                bool hasElements = teachers._Any();
+                Console.WriteLine("The list {0} empty.",
+                    hasElements ? "is not" : "is");
+
+                //AsEnumerable
+                string[] array = new string[] { "Yerevan", "Gyumri", "Vanadzor", "Vagharshapat", "Abovyan", "Kapan", "Hrazdan", "Artashat", "Armavir", "Dilijan" };
+                var query3 = array._AsEnumerable()._Where(str => str.Contains("A"));
+                foreach (var ele in query3)
+                {
+                    Console.WriteLine(ele);
+                }
+
+                //Cast, OrderBy, Select
+                ArrayList arrayList = new ArrayList() { "Yerevan", "Gyumri", "Vanadzor", "Vagharshapat", "Abovyan", "Kapan", "Hrazdan", "Artashat", "Armavir", "Dilijan" };
+                IEnumerable<string> query4 = arrayList._Cast<string>()._OrderBy(city => city)._Select(city => city);
+                foreach (string city in query4)
+                {
+                    Console.WriteLine(city);
+                }
+                // The following code, without the cast, doesn't compile.
+                //IEnumerable<string> query5 = arrayList.OrderBy(city => city).Select(city => city);
+
+                //Contains
+                var city1 = arrayList[4];
+                if (array._Contains(city1))
+                {
+                    Console.WriteLine(city1);
+                }
+
+                //DefaultIfEmpty
+                List<string> emptyList = new List<string>();
+                List<int> numList = new List<int> { 1, 3, 5, 7, 9 };
+                var res3 = emptyList._DefaultIfEmpty();
+                var res4 = numList._DefaultIfEmpty();
+
+                //ElementAt
+                var teachers1 = teachers._ElementAt(1);
+                //ElementAtOrDefault
+                var teachers2 = teachers._ElementAtOrDefault(7);
+
+
+                //TODO:
+                //Except
+                //groupJoin
+                //Intersect
+                //Join
+                //Last
+                //LastOrDefault
+                //LongCount
+                //Max
+                //Min
+                //OfType
+                //OrderBy
+                //OrderByDescending
+                //Reverse
+                //SelectMany
+                //SequenceEqual
+                //Single
+                //SingleOrDefault
+                //Skip
+                //SkipWhile
+                //Sum
+                //Take
+                //TakeWhile
+                //ToArray
+                //ToDictionary
+                //ToHashSet
+                //ToList
+                //ToLookup
+                //Union
+                //Zip
+
+
+                Console.ReadKey();
             }
         }
     }

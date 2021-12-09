@@ -2593,7 +2593,7 @@ namespace System.Collections.Generic
         {
             int Count { get; }
             IEnumerable<TElement> this[TKey key] { get; }
-            bool Contains(TKey key);
+            bool _Contains(TKey key);
         }
 
         public class _Lookup<TKey, TElement> : IEnumerable<_IGrouping<TKey, TElement>>, _ILookup<TKey, TElement>
@@ -2649,7 +2649,7 @@ namespace System.Collections.Generic
                 }
             }
 
-            public bool Contains(TKey key)
+            public bool _Contains(TKey key)
             {
                 return _GetGrouping(key, false) != null;
             }
